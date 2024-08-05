@@ -50,6 +50,19 @@
 
     </x-bladewind::card>
 
+    <div class="alert_success" hidden>
+        <x-bladewind::alert type="success" show_ring="true">
+            <p class="text-sm">Usuário atualizado com sucesso!</p>
+        </x-bladewind::alert>
+    </div>
+
+    <div class="alert_error" hidden>
+        <x-bladewind::alert type="error" show_ring="true">
+            <p class="text-sm">Usuário atualizado com sucesso!</p>
+        </x-bladewind::alert>
+    </div>
+
+
     <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -85,12 +98,16 @@
             },
             data: data,
             success: function(result) {
-                alert('Atualizado com sucesso');
+                $('.alert_success').show();
+                $('.text-sm').text('Usuário atualizado com sucesso!');
                 window.location.href = `/`;
             },
             error: function(err) {
-                alert('Erro ao atualizar');
-                console.log(err);
+                $('.alert_error').show();
+                $('.text-sm').text('Erro ao atualizar o usuario!');
+                setTimeout(() => {
+                    $('.alert_error').hide();
+                }, 3000);
             }
         });
     }
