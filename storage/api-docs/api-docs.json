@@ -1,0 +1,43 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My first API",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Deleta usuario pelo id",
+                "description": "Deleta usuario pelo id",
+                "operationId": "c1dcb7cbbb4fa5dbcb00dcaebb57a4a6",
+                "responses": {
+                    "204": {
+                        "description": "Deletado com sucesso"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "201": {
+                "description": "Criado com sucesso"
+            },
+            "200": {
+                "description": "Atualizado com sucesso"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Usuario",
+            "description": "Usuario"
+        }
+    ]
+}

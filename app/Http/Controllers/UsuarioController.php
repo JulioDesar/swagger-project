@@ -5,6 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 
+/**
+ * @OA\Info(
+ *   title="My first API",
+ *   version="1.0.0",
+ *   contact={
+ *     "email": "support@example.com"
+ *   }
+ * )
+ */
 class UsuarioController extends Controller
 {
 
@@ -36,6 +45,18 @@ class UsuarioController extends Controller
 
     // ------------- API ----------------
 
+    /**
+     *  @OA\Delete(
+     *      path="/delete/{id}",
+     *      summary="Deleta usuario pelo id",
+     *      description="Deleta usuario pelo id",
+     *      tags={"Usuario"},
+     *   @OA\Response(
+     *     response=204,
+     *     description="Deletado com sucesso"
+     *   )
+     *  )
+     */
     public function delete($id)
     {
         $user = Usuario::findOrFail($id);
@@ -44,6 +65,18 @@ class UsuarioController extends Controller
         return response()->json(null, 204);
     }
 
+    /**
+     *  @OA\Create(
+     *      path="/create",
+     *      summary="Cria usuario",
+     *      description="Cria usuario",
+     *      tags={"Usuario"},
+     *   @OA\Response(
+     *     response=201,
+     *     description="Criado com sucesso"
+     *   )
+     *  )
+     */
     public function create(Request $request)
     {
         $data = $request->validate([
@@ -61,6 +94,18 @@ class UsuarioController extends Controller
         return response()->json($usuario, 201);
     }
 
+    /**
+     *  @OA\Update(
+     *      path="/update/{id}",
+     *      summary="Atualiza um usuario",
+     *      description="Atualiza um usuario",
+     *      tags={"Usuario"},
+     *   @OA\Response(
+     *     response=200,
+     *     description="Atualizado com sucesso"
+     *   )
+     *  )
+     */
     public function update(Request $request)
     {
         $data = $request->validate([
@@ -69,7 +114,7 @@ class UsuarioController extends Controller
             'senha' => 'required|string|min:8',
         ]);
 
-        $usuario = Usuario::findOrFail($request -> id);
+        $usuario = Usuario::findOrFail($request->id);
         $usuario->nome = $data['nome'];
         $usuario->email = $data['email'];
         $usuario->senha = encrypt($data['senha']);
